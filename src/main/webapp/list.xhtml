@@ -21,10 +21,17 @@
                         <h:outputText value="#{task.title}"/>
                     </p:column>
 
-                    <p:column headerText="Date" style="text-align: left;"
+                    <p:column headerText="Planned Date" style="text-align: left;"
                               sortBy="#{task.plannedDate}">
 
                         <h:outputText value="#{task.plannedDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Finished" style="text-align: left;"
+                              sortBy="#{task.finishedAt}">
+                        <h:outputText value="#{task.finishedAt}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column>
@@ -34,12 +41,18 @@
                         <f:facet name="filter">
                             <p:selectOneButton onchange="PF('list').filter()">
                                 <f:selectItem itemLabel="ALL" itemValue=""/>
-                                <f:selectItem itemLabel="DONE" itemValue="DONE"/>
                                 <f:selectItem itemLabel="OPEN" itemValue="OPEN"/>
-                                <f:selectItem itemLabel="FINISHED" itemValue="FINISHED"/>
+                                <f:selectItem itemLabel="DONE" itemValue="DONE"/>
                             </p:selectOneButton>
                         </f:facet>
                         <h:outputText value="#{task.status}"/>
+                    </p:column>
+
+                    <p:column headerText="Last Modified" style="text-align: left;"
+                              sortBy="#{task.modifiedAt}">
+                        <h:outputText value="#{task.modifiedAt}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                     </p:column>
 
                     <p:column headerText="Actions" width="6%" style="text-align: center;">

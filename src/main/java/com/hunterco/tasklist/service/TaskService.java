@@ -12,8 +12,6 @@ public class TaskService extends TaskRepository implements ITaskService {
   public Task update(Task task) {
     if (task.getStatus().equals(TaskStatus.DONE))
       task.setFinishedAt(new Date());
-    if (task.getStatus().equals(TaskStatus.REMOVED))
-      task.setRemovedAt(new Date());
     task.setModifiedAt(new Date());
     return super.update(task);
   }
