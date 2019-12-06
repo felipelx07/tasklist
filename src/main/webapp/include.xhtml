@@ -1,0 +1,56 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="formInclud" prependId="false">
+        <p:focus context="@form"/>
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12">
+                <h1>Create Task</h1>
+                <p:messages closable="true"/>
+            </div>
+
+            <div class="ui-g-8">
+                <p:outputLabel for="title" value="Title"/>
+                <p:inputText id="title" required="true"
+                             requiredMessage="Title cannot be null"
+                             value="#{taskController.task.title}"/>
+            </div>
+
+            <div class="ui-g-2">
+                <p:outputLabel for="date" value="Date"/>
+                <p:datePicker id="date" size="25"
+                              value="#{taskController.task.plannedDate}"/>
+            </div>
+
+            <div class="ui-g-2">
+                <p:outputLabel for="status" value="Status"/>
+                <p:selectOneMenu id="status" value="#{taskController.task.status}">
+                    <f:selectItems value="#{taskController.statuses}"/>
+                </p:selectOneMenu>
+            </div>
+
+            <div class="ui-g-12">
+                <p:outputLabel for="description" value="Description"/>
+                <p:inputTextarea id="description" value="#{taskController.task.description}"/>
+            </div>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-10"/>
+            <div class="ui-g-1">
+                <p:commandButton value="Remove" icon="pi pi-trash"
+                                 update="list, @form" disabled="#{taskController.task.id == null}"
+                                 action="#{taskController.remove(taskController.task)}"/>
+            </div>
+            <div class="ui-g-1">
+                <p:commandButton type="submit" value="Save" icon="pi pi-check" process="@form"
+                                 update="@form, list"
+                                 action="#{taskController.update}"/>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

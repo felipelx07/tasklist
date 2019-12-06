@@ -1,0 +1,60 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="formList" prependId="false">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1>List Tasks</h1>
+            </div>
+            <div class="ui-g-12">
+                <p:dataTable id="list" value="#{taskController.list}" var="task"
+                             paginator="true" widgetVar="list"
+                             paginatorPosition="top"
+                             rows="10" styleClass="paginated">
+
+                    <p:column headerText="Task Title" style="text-align: left;"
+                              filterBy="#{task.title}">
+                        <h:outputText value="#{task.title}"/>
+                    </p:column>
+
+                    <p:column headerText="Date" style="text-align: left;"
+                              sortBy="#{task.plannedDate}">
+
+                        <h:outputText value="#{task.plannedDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Status" style="text-align: left;"
+                              filterBy="#{task.status}" filterMatchMode="exact">
+                        <f:facet name="filter">
+                            <p:selectOneButton onchange="PF('list').filter()">
+                                <f:selectItem itemLabel="ALL" itemValue=""/>
+                                <f:selectItem itemLabel="DONE" itemValue="DONE"/>
+                                <f:selectItem itemLabel="OPEN" itemValue="OPEN"/>
+                                <f:selectItem itemLabel="FINISHED" itemValue="FINISHED"/>
+                            </p:selectOneButton>
+                        </f:facet>
+                        <h:outputText value="#{task.status}"/>
+                    </p:column>
+
+                    <p:column headerText="Actions" width="6%" style="text-align: center;">
+                        <p:commandButton icon="pi pi-search" update="formInclud">
+                            <f:setPropertyActionListener value="#{task}"
+                                                         target="#{taskController.task}"/>
+                        </p:commandButton>
+
+                        <p:commandButton icon="pi pi-trash" immediate="true"
+                                         actionListener="#{taskController.remove(task)}"
+                                         update="list"/>
+
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
