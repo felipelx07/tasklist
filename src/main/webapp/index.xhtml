@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>
-        <ui:insert name="title">TraskList HunterCo</ui:insert>
+        <ui:insert name="title">TaskList HunterCo</ui:insert>
     </title>
 </h:head>
 
 <h:body>
+    <p:growl id="growl" life="4000" showDetail="false" />
     <ui:include src="/include.xhtml"/>
     <ui:include src="/list.xhtml"/>
 </h:body>

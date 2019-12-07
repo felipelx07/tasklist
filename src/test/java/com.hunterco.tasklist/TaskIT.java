@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -54,16 +55,11 @@ public class TaskIT {
   }
 
   @Test
-  public void removeTasks() {
-    service.list().forEach(t -> service.remove(t));
-  }
-
-  @Test
   public void findTask() {
     service.list().forEach(t -> service.update(t));
-    Task task = service.find(TaskFactory.getTask1().getId());
+    Task task = service.find(list.stream().findFirst().get().getId());
     Assert.assertNotNull(task);
-    Assert.assertNotNull(TaskFactory.getTask1().getTitle(), task.getTitle());
+    Assert.assertNotNull(list.stream().findFirst().get().getTitle(), task.getTitle());
   }
 
   @Test
@@ -78,5 +74,12 @@ public class TaskIT {
     List<Task> list = service.list();
     Assert.assertNotNull(list);
   }
+
+  @Test
+  @InSequence(9)
+  public void removeTasks() {
+    service.list().forEach(t -> service.remove(t));
+  }
+
 
 }

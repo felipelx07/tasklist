@@ -30,9 +30,9 @@ public class TaskRepository {
   }
 
   public List<Task> find(String search) {
-    TypedQuery<Task> typedQuery = entityManager.createQuery(
-        "SELECT t FROM Task t WHERE t.description = :description OR t.title = :title OR t.id = :id ",
-        Task.class);
+    TypedQuery<Task> typedQuery = entityManager
+        .createQuery("SELECT t FROM Task t WHERE t.description = :description OR t.title = :title",
+                     Task.class);
     typedQuery.setParameter("description", "%" + search + "%");
     typedQuery.setParameter("title", "%" + search + "%");
     return typedQuery.getResultList();

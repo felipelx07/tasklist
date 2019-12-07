@@ -6,6 +6,8 @@ import com.hunterco.tasklist.service.ITaskService;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +35,8 @@ public class TaskController implements Serializable {
   public void update() {
     service.update(task);
     task = new Task();
+    FacesContext.getCurrentInstance()
+        .addMessage(null, new FacesMessage("Successful", "Task saved!"));
   }
 
   public void remove(Task task) {
