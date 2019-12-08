@@ -14,39 +14,39 @@
                 <p:messages closable="true"/>
             </div>
 
-            <div class="ui-g-8">
+            <div class="ui-g-12 ui-md-8">
                 <p:outputLabel for="title" value="Title"/>
                 <p:inputText id="title" required="true"
                              requiredMessage="Title cannot be null"
                              value="#{taskController.task.title}"/>
             </div>
 
-            <div class="ui-g-2">
+            <div class="ui-g-12 ui-md-2">
                 <p:outputLabel for="date" value="Date"/>
                 <p:datePicker id="date" size="25"
                               value="#{taskController.task.plannedDate}"/>
             </div>
 
-            <div class="ui-g-2">
+            <div class="ui-g-12 ui-md-2">
                 <p:outputLabel for="status" value="Status"/>
                 <p:selectOneMenu id="status" value="#{taskController.task.status}">
                     <f:selectItems value="#{taskController.statuses}"/>
                 </p:selectOneMenu>
             </div>
 
-            <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-12">
                 <p:outputLabel for="description" value="Description"/>
                 <p:inputTextarea id="description" value="#{taskController.task.description}"/>
             </div>
         </div>
-        <div class="ui-g ui-fluid">
-            <div class="ui-g-10"/>
-            <div class="ui-g-1">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-10"/>
+            <div class="ui-g-12 ui-md-1 ui-fluid">
                 <p:commandButton value="Remove" icon="pi pi-trash"
                                  update="list, @form" disabled="#{taskController.task.id == null}"
                                  action="#{taskController.remove(taskController.task)}"/>
             </div>
-            <div class="ui-g-1">
+            <div class="ui-g-12 ui-md-1 ui-fluid">
                 <p:commandButton type="submit" value="Save" icon="pi pi-check" process="@form"
                                  update="@form, list"
                                  action="#{taskController.update}"/>

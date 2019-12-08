@@ -35,8 +35,7 @@ public class TaskController implements Serializable {
   public void update() {
     service.update(task);
     task = new Task();
-    FacesContext.getCurrentInstance()
-        .addMessage(null, new FacesMessage("Successful", "Task saved!"));
+    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Task saved"));
   }
 
   public void remove(Task task) {
