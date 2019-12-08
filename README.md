@@ -17,3 +17,4 @@ This project is a TaskList test for HunterCo.
 mvn package && mvn thorntail:run
 ```
 
+Demo: http://35.232.45.199:8080/
