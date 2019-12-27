@@ -1,6 +1,3 @@
-## Projet TaskList for HunterCo
-This project is a TaskList test for HunterCo. 
-
 #### Technologies used: 
 
 - JavaEE 8 (CDI/JPA/JSF) 
